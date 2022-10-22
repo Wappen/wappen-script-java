@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="demonstrate function arguments">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="demonstrate for loop">
       <change beforePath="$PROJECT_DIR$/src/main/resources/script.ws" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666451826841</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="demonstrate for loop">
+      <created>1666452393430</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666452393430</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,7 +144,8 @@
     <MESSAGE value="add conditional and boolean operators" />
     <MESSAGE value="add functions" />
     <MESSAGE value="demonstrate function arguments" />
-    <option name="LAST_COMMIT_MESSAGE" value="demonstrate function arguments" />
+    <MESSAGE value="demonstrate for loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="demonstrate for loop" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
