@@ -12,9 +12,7 @@ public class Program {
                         ( b ! )""");
         Tree<Token> ast = parse(tokens);
 
-        System.out.println("Parse complete.");
-
-        new Runtime().run(ast);
+        System.out.println(new Runtime().run(ast));
     }
 
     private static Token[] tokenize(String code) throws IllegalSyntaxException {

@@ -29,14 +29,11 @@ public class Scope {
                         Object varKey = evalArg(expression, 0);
                         Object value = evalArg(expression, 1);
                         variables.put(varKey, value);
-                        System.out.printf("Set variable '%s' to '%s'%n", varKey, value);
                         return value;
                     }
                     case "!" -> {
                         Object varKey = evalArg(expression, 0);
-                        Object value = getValue(varKey);
-                        System.out.printf("Return value for '%s' as '%s'%n", varKey, value);
-                        return value;
+                        return getValue(varKey);
                     }
                     case "+" -> {
                         Object value1 = evalArg(expression, 0);
