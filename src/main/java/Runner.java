@@ -66,6 +66,9 @@ public class Runner {
                         case "==" -> {
                             return evalArg(expression, 0).equals(evalArg(expression, 1));
                         }
+                        case "!=" -> {
+                            return !evalArg(expression, 0).equals(evalArg(expression, 1));
+                        }
                         case ">=" -> {
                             return num(evalArg(expression, 0)) >= num(evalArg(expression, 1));
                         }
@@ -112,7 +115,14 @@ public class Runner {
                         }
                     }
                 }
-                case LITERAL, NAME -> {
+                case LITERAL_STR -> {
+                    String str = expression.value().string();
+                    return str.substring(1, str.length() - 1);
+                }
+                case LITERAL_NUM -> {
+                    return Double.parseDouble(expression.value().string());
+                }
+                case NAME -> {
                     return expression.value().string();
                 }
             }
@@ -120,10 +130,10 @@ public class Runner {
             return null;
         }
 
-        private static float num(Object value) {
+        private static double num(Object value) {
             return switch (value) {
-                case Float f -> f;
-                case String str -> Float.parseFloat(str);
+                case Double f -> f;
+                case String str -> Double.parseDouble(str);
                 default -> 0;
             };
         }
@@ -133,7 +143,7 @@ public class Runner {
                 return false;
 
             return switch (value) {
-                case Float f -> f != 0;
+                case Double f -> f != 0;
                 case String str -> str.length() != 0;
                 case Boolean b -> b;
                 default -> true;

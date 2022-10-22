@@ -12,7 +12,7 @@ public class Parser {
                 case OPERATOR -> {
                     workingStack.peek().setValue(currentToken);
                 }
-                case LITERAL, NAME -> {
+                case LITERAL_STR, LITERAL_NUM, NAME -> {
                     Tree.Node<Token> node = new Tree.Node<>(currentToken);
                     workingStack.peek().addBranch(node);
                 }

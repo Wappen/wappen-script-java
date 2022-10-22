@@ -3,8 +3,9 @@ import java.util.regex.Pattern;
 
 public record Token(String string, Type type) {
     public enum Type {
-        OPERATOR("\\+|\\-|\\*|\\/|=|!|\\?|==|\\<=|\\>=|\\<|\\>|\\^|@"),
-        LITERAL("\\d+|\"(?s:.*)\""),
+        OPERATOR("\\+|\\-|\\*|\\/|=|!|\\?|==|!=|\\<=|\\>=|\\<|\\>|\\^|@"),
+        LITERAL_STR("\"(?s:.*)\""),
+        LITERAL_NUM("\\d+"),
         SCOPE_IN("\\("),
         SCOPE_OUT("\\)"),
         NAME(".+");
