@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 
 public record Token(String string, Type type) {
     public enum Type {
-        OPERATOR("\\+|\\-|\\*|\\/|=|!|\\?|==|!=|\\<=|\\>=|\\<|\\>|\\^|@"),
+        OPERATOR("\\+|\\-|\\*|\\/|=|!|\\?|\\||&|==|!=|\\<=|\\>=|\\<|\\>|\\^|@"),
         LITERAL_STR("\"(?s:.*)\""),
         LITERAL_NUM("\\d+"),
         SCOPE_IN("\\("),

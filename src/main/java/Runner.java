@@ -67,6 +67,12 @@ public class Runner {
                                 return evalArg(expression, 2);
                             }
                         }
+                        case "|" -> {
+                            return cascadeBool(expression, vals -> vals.a() | vals.b());
+                        }
+                        case "&" -> {
+                            return cascadeBool(expression, vals -> vals.a() & vals.b());
+                        }
                         case "==" -> {
                             Set<Object> vals = new HashSet<>();
                             for (int i = 0; i < expression.branches().size(); i++) {
@@ -173,6 +179,15 @@ public class Runner {
             double result = num(evalArg(expression, 0));
             for (int i = 1; i < expression.branches().size(); i++) {
                 double arg = num(evalArg(expression, i));
+                result = func.apply(new Tuple<>(result, arg));
+            }
+            return result;
+        }
+
+        private boolean cascadeBool(Tree.Node<Token> expression, Function<Tuple<Boolean, Boolean>, Boolean> func) {
+            boolean result = bool(evalArg(expression, 0));
+            for (int i = 1; i < expression.branches().size(); i++) {
+                boolean arg = bool(evalArg(expression, i));
                 result = func.apply(new Tuple<>(result, arg));
             }
             return result;
