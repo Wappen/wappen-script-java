@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Program {
+public class Interpreter {
     public static void main(String... args) throws IllegalSyntaxException, IOException {
         if (args.length != 1) {
             System.err.printf("Expected exactly one argument. Got %d.%n", args.length);
@@ -43,6 +43,6 @@ public class Program {
     }
 
     private static Object interpret(Tree<Token> ast) {
-        return new Runtime().run(ast);
+        return new Runner().run(ast);
     }
 }

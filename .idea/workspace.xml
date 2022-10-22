@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="add string literals">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
+    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="add file loading">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Runtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Scope.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +44,7 @@
 }</component>
   <component name="RunManager">
     <configuration name="Run" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Program" />
+      <option name="MAIN_CLASS_NAME" value="Interpreter" />
       <module name="TestAST" />
       <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/target/classes/script.ws" />
       <method v="2">
@@ -81,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666448451294</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add file loading">
+      <created>1666449619935</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666449619935</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,7 +107,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="add program return value" />
     <MESSAGE value="add string literals" />
-    <option name="LAST_COMMIT_MESSAGE" value="add string literals" />
+    <MESSAGE value="add file loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="add file loading" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
