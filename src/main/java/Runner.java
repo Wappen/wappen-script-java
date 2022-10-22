@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Runner {
 
@@ -64,42 +66,34 @@ public class Runner {
                             }
                         }
                         case "==" -> {
-                            return evalArg(expression, 0).equals(evalArg(expression, 1));
+                            return expression.branches().stream().allMatch(expression.branches().get(0)::equals);
                         }
                         case "!=" -> {
-                            return !evalArg(expression, 0).equals(evalArg(expression, 1));
+                            return expression.branches().stream().noneMatch(expression.branches().get(0)::equals);
                         }
                         case ">=" -> {
-                            return num(evalArg(expression, 0)) >= num(evalArg(expression, 1));
+                            return cascadeCompare(expression, vals -> vals.a() >= vals.b());
                         }
                         case "<=" -> {
-                            return num(evalArg(expression, 0)) <= num(evalArg(expression, 1));
+                            return cascadeCompare(expression, vals -> vals.a() <= vals.b());
                         }
                         case ">" -> {
-                            return num(evalArg(expression, 0)) > num(evalArg(expression, 1));
+                            return cascadeCompare(expression, vals -> vals.a() > vals.b());
                         }
                         case "<" -> {
-                            return num(evalArg(expression, 0)) < num(evalArg(expression, 1));
+                            return cascadeCompare(expression, vals -> vals.a() < vals.b());
                         }
                         case "+" -> {
-                            Object value1 = evalArg(expression, 0);
-                            Object value2 = evalArg(expression, 1);
-                            return num(value1) + num(value2);
+                            return cascadeEval(expression, vals -> vals.a() + vals.b());
                         }
                         case "-" -> {
-                            Object value1 = evalArg(expression, 0);
-                            Object value2 = evalArg(expression, 1);
-                            return num(value1) - num(value2);
+                            return cascadeEval(expression, vals -> vals.a() - vals.b());
                         }
                         case "*" -> {
-                            Object value1 = evalArg(expression, 0);
-                            Object value2 = evalArg(expression, 1);
-                            return num(value1) * num(value2);
+                            return cascadeEval(expression, vals -> vals.a() * vals.b());
                         }
                         case "/" -> {
-                            Object value1 = evalArg(expression, 0);
-                            Object value2 = evalArg(expression, 1);
-                            return num(value1) / num(value2);
+                            return cascadeEval(expression, vals -> vals.a() / vals.b());
                         }
                         case "^" -> {
                             Object funKey = evalArg(expression, 0);
@@ -117,7 +111,7 @@ public class Runner {
                 }
                 case LITERAL_STR -> {
                     String str = expression.value().string();
-                    return str.substring(1, str.length() - 1);
+                    return str.substring(1, str.length() - 1); // Without ""
                 }
                 case LITERAL_NUM -> {
                     return Double.parseDouble(expression.value().string());
@@ -154,6 +148,28 @@ public class Runner {
             return Scope.run(expression.branches().get(index), this);
         }
 
+        private boolean cascadeCompare(Tree.Node<Token> expression, Predicate<Tuple<Double, Double>> pred) {
+            double a = num(evalArg(expression, 0));
+            for (int i = 1; i < expression.branches().size(); i++) {
+                double b = num(evalArg(expression, i));
+                if (!pred.test(new Tuple<>(a, b)))
+                    return false;
+                a = b;
+            }
+            return true;
+        }
+
+        private double cascadeEval(Tree.Node<Token> expression, Function<Tuple<Double, Double>, Double> func) {
+            double result = num(evalArg(expression, 0));
+            for (int i = 1; i < expression.branches().size(); i++) {
+                double arg = num(evalArg(expression, i));
+                result = func.apply(new Tuple<>(result, arg));
+            }
+            return result;
+        }
+
+        private record Tuple<T, U>(T a, U b) {}
+
         public static Object run(Tree.Node<Token> statements, Scope base) {
             Scope scope = new Scope(base);
 
@@ -172,5 +188,4 @@ public class Runner {
             }
         }
     }
-
 }

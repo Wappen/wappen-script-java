@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="enable multi line string literals">
+    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="string and number literals are now different">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/script.ws" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666453648398</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="string and number literals are now different">
+      <created>1666455706660</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1666455706660</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,7 +162,8 @@
     <MESSAGE value="demonstrate function arguments" />
     <MESSAGE value="demonstrate for loop" />
     <MESSAGE value="enable multi line string literals" />
-    <option name="LAST_COMMIT_MESSAGE" value="enable multi line string literals" />
+    <MESSAGE value="string and number literals are now different" />
+    <option name="LAST_COMMIT_MESSAGE" value="string and number literals are now different" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -172,7 +179,6 @@
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
-        <PinnedItemInfo parentTag="Tree$Node" memberName="branches" />
         <PinnedItemInfo parentTag="Tree$Node" memberName="value" />
         <PinnedItemInfo parentTag="Scope" memberName="base" />
         <PinnedItemInfo parentTag="Tree" memberName="root" />
