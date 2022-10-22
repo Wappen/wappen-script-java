@@ -41,25 +41,49 @@ public class Runner {
                             Object varKey = evalArg(expression, 0);
                             return getValue(varKey);
                         }
+                        case "?" -> {
+                            Object condition = evalArg(expression, 0);
+                            if (bool(condition)) {
+                                return evalArg(expression, 1);
+                            }
+                            else if (expression.branches().size() == 3) {
+                                return evalArg(expression, 2);
+                            }
+                        }
+                        case "==" -> {
+                            return evalArg(expression, 0).equals(evalArg(expression, 1));
+                        }
+                        case ">=" -> {
+                            return num(evalArg(expression, 0)) >= num(evalArg(expression, 1));
+                        }
+                        case "<=" -> {
+                            return num(evalArg(expression, 0)) <= num(evalArg(expression, 1));
+                        }
+                        case ">" -> {
+                            return num(evalArg(expression, 0)) > num(evalArg(expression, 1));
+                        }
+                        case "<" -> {
+                            return num(evalArg(expression, 0)) < num(evalArg(expression, 1));
+                        }
                         case "+" -> {
                             Object value1 = evalArg(expression, 0);
                             Object value2 = evalArg(expression, 1);
-                            return number(value1) + number(value2);
+                            return num(value1) + num(value2);
                         }
                         case "-" -> {
                             Object value1 = evalArg(expression, 0);
                             Object value2 = evalArg(expression, 1);
-                            return number(value1) - number(value2);
+                            return num(value1) - num(value2);
                         }
                         case "*" -> {
                             Object value1 = evalArg(expression, 0);
                             Object value2 = evalArg(expression, 1);
-                            return number(value1) * number(value2);
+                            return num(value1) * num(value2);
                         }
                         case "/" -> {
                             Object value1 = evalArg(expression, 0);
                             Object value2 = evalArg(expression, 1);
-                            return number(value1) / number(value2);
+                            return num(value1) / num(value2);
                         }
                     }
                 }
@@ -71,11 +95,23 @@ public class Runner {
             return null;
         }
 
-        private static float number(Object value) {
+        private static float num(Object value) {
             return switch (value) {
                 case Float f -> f;
                 case String str -> Float.parseFloat(str);
                 default -> 0;
+            };
+        }
+
+        private static boolean bool(Object value) {
+            if (value == null)
+                return false;
+
+            return switch (value) {
+                case Float f -> f != 0;
+                case String str -> str.length() != 0;
+                case Boolean b -> b;
+                default -> true;
             };
         }
 
