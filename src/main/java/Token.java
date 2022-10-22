@@ -3,11 +3,11 @@ import java.util.regex.Pattern;
 
 public record Token(String string, Type type) {
     public enum Type {
-        OPERATOR("\\+|\\-|\\*|\\/|=|!|\\?|\\||&|==|!=|\\<=|\\>=|\\<|\\>|\\^|@"),
-        LITERAL_STR("\"(?s:.*)\""),
-        LITERAL_NUM("\\d+"),
-        SCOPE_IN("\\("),
-        SCOPE_OUT("\\)"),
+        OPERATOR("(?<!\\\\)(\\+|\\-|\\*|\\/|=|!|\\?|\\||&|==|!=|\\<=|\\>=|\\<|\\>|\\^|@)"),
+        LITERAL_STR("(?<!\\\\)\"(?s:.*)(?<!\\\\)\""),
+        LITERAL_NUM("(?<!\\\\)\\d+"),
+        SCOPE_IN("(?<!\\\\)\\("),
+        SCOPE_OUT("(?<!\\\\)\\)"),
         NAME(".+");
 
         private final Pattern pattern;
