@@ -10,10 +10,12 @@ public class Runner {
     private static class Scope {
         private final Scope base;
         private final Map<Object, Object> variables;
+        private final Map<Object, Tree.Node<Token>> functions;
 
         private Scope(Scope base) {
             this.base = base;
             variables = new HashMap<>();
+            functions = new HashMap<>();
         }
 
         private Object getValue(Object varKey) {
@@ -23,6 +25,17 @@ public class Runner {
 
             if (base != null)
                 return base.getValue(varKey);
+
+            return null;
+        }
+
+        private Tree.Node<Token> getFunction(Object funKey) {
+            if (functions.containsKey(funKey)) {
+                return functions.get(funKey);
+            }
+
+            if (base != null)
+                return base.getFunction(funKey);
 
             return null;
         }
@@ -84,6 +97,18 @@ public class Runner {
                             Object value1 = evalArg(expression, 0);
                             Object value2 = evalArg(expression, 1);
                             return num(value1) / num(value2);
+                        }
+                        case "^" -> {
+                            Object funKey = evalArg(expression, 0);
+                            functions.put(funKey, expression.branches().get(1));
+                        }
+                        case "@" -> {
+                            Object funKey = evalArg(expression, 0);
+                            Tree.Node<Token> function = getFunction(funKey);
+                            if (function != null) {
+                                return Scope.run(function, this);
+                            }
+                            return null;
                         }
                     }
                 }

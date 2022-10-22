@@ -26,6 +26,9 @@ public class Interpreter {
         ArrayList<Token> tokens = new ArrayList<>();
 
         for (String word : words) {
+            if (word.isEmpty())
+                continue;
+
             Optional<Token.Type> type = Token.Type.from(word);
 
             if (type.isEmpty()) {
