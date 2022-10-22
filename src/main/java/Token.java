@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 public record Token(String string, Type type) {
     public enum Type {
         OPERATOR("\\+|\\-|\\*|\\/|=|!"),
-        NUMBER("\\d+"),
+        LITERAL("\\d+|\".*\""),
         SCOPE_IN("\\("),
         SCOPE_OUT("\\)"),
         NAME(".+");

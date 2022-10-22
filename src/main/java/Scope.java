@@ -57,7 +57,7 @@ public class Scope {
                     }
                 }
             }
-            case NUMBER, NAME -> {
+            case LITERAL, NAME -> {
                 return expression.value().string();
             }
         }

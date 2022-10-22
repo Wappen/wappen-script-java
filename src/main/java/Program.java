@@ -16,7 +16,7 @@ public class Program {
     }
 
     private static Token[] tokenize(String code) throws IllegalSyntaxException {
-        String[] words = code.split("\\s+");
+        String[] words = code.split("\\s(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // Every space outside of quotes
         ArrayList<Token> tokens = new ArrayList<>();
 
         for (String word : words) {
