@@ -1,5 +1,7 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -66,10 +68,18 @@ public class Runner {
                             }
                         }
                         case "==" -> {
-                            return expression.branches().stream().allMatch(expression.branches().get(0)::equals);
+                            Set<Object> vals = new HashSet<>();
+                            for (int i = 0; i < expression.branches().size(); i++) {
+                                vals.add(evalArg(expression, i));
+                            }
+                            return vals.size() == 1;
                         }
                         case "!=" -> {
-                            return expression.branches().stream().noneMatch(expression.branches().get(0)::equals);
+                            Set<Object> vals = new HashSet<>();
+                            for (int i = 0; i < expression.branches().size(); i++) {
+                                vals.add(evalArg(expression, i));
+                            }
+                            return vals.size() == expression.branches().size();
                         }
                         case ">=" -> {
                             return cascadeCompare(expression, vals -> vals.a() >= vals.b());

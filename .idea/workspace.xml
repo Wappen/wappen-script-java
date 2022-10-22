@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="string and number literals are now different">
+    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="add cascading operators with unlimited arguments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/script.ws" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
@@ -137,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666455706660</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add cascading operators with unlimited arguments">
+      <created>1666457017642</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1666457017642</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,7 +170,8 @@
     <MESSAGE value="demonstrate for loop" />
     <MESSAGE value="enable multi line string literals" />
     <MESSAGE value="string and number literals are now different" />
-    <option name="LAST_COMMIT_MESSAGE" value="string and number literals are now different" />
+    <MESSAGE value="add cascading operators with unlimited arguments" />
+    <option name="LAST_COMMIT_MESSAGE" value="add cascading operators with unlimited arguments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
