@@ -1,18 +1,24 @@
 import exceptions.IllegalSyntaxException;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class Program {
-    public static void main(String... args) throws IllegalSyntaxException {
-        Token[] tokens = tokenize(
-                """
-                        ( a = ( 3 + ( 7 * 9 ) ) )
-                        ( b = ( + 10 ( a ! ) ) )
-                        ( b ! )""");
-        Tree<Token> ast = parse(tokens);
+    public static void main(String... args) throws IllegalSyntaxException, IOException {
+        if (args.length != 1) {
+            System.err.printf("Expected exactly one argument. Got %d.%n", args.length);
+            return;
+        }
+        runCode(Files.readString(Path.of(args[0])));
+    }
 
-        System.out.println(new Runtime().run(ast));
+    private static void runCode(String code) throws IllegalSyntaxException {
+        Token[] tokens = tokenize(code);
+        Tree<Token> ast = parse(tokens);
+        System.out.printf("Program returned '%s'%n", interpret(ast));
     }
 
     private static Token[] tokenize(String code) throws IllegalSyntaxException {
@@ -34,5 +40,9 @@ public class Program {
 
     private static Tree<Token> parse(Token[] tokens) {
         return new Parser().parse(tokens);
+    }
+
+    private static Object interpret(Tree<Token> ast) {
+        return new Runtime().run(ast);
     }
 }

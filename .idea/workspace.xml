@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="add program return value">
+    <list default="true" id="506ec029-457b-468f-a75c-642fd85d9c05" name="Changes" comment="add string literals">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Scope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,7 @@
     <configuration name="Run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <module name="TestAST" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/target/classes/script.ws" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -75,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666447380863</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add string literals">
+      <created>1666448451294</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666448451294</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -92,7 +98,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="add program return value" />
-    <option name="LAST_COMMIT_MESSAGE" value="add program return value" />
+    <MESSAGE value="add string literals" />
+    <option name="LAST_COMMIT_MESSAGE" value="add string literals" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
