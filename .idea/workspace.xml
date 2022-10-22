@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9189289-d2f8-4a84-a6a9-5ea0b56aad2d" name="Changes" comment="">
+    <list default="true" id="b9189289-d2f8-4a84-a6a9-5ea0b56aad2d" name="Changes" comment="add boolean aggregate operators">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/compare.ws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/script.ws" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666457357427</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add boolean aggregate operators">
+      <created>1666458631894</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1666458631894</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,7 +186,8 @@
     <MESSAGE value="string and number literals are now different" />
     <MESSAGE value="add cascading operators with unlimited arguments" />
     <MESSAGE value="fix equality operators" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix equality operators" />
+    <MESSAGE value="add boolean aggregate operators" />
+    <option name="LAST_COMMIT_MESSAGE" value="add boolean aggregate operators" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
