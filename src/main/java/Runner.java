@@ -1,3 +1,7 @@
+import exceptions.IllegalSyntaxException;
+
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -7,16 +11,16 @@ import java.util.function.Predicate;
 
 public class Runner {
 
-    public Object run(Tree<Token> ast) {
-        return Scope.run(ast.getRoot(), null);
+    public Object run(Tree<Token> ast, Scope scope) {
+        return Scope.run(ast.getRoot(), scope);
     }
 
-    private static class Scope {
+    public static class Scope {
         private final Scope base;
         private final Map<Object, Object> variables;
         private final Map<Object, Tree.Node<Token>> functions;
 
-        private Scope(Scope base) {
+        Scope(Scope base) {
             this.base = base;
             variables = new HashMap<>();
             functions = new HashMap<>();
@@ -121,7 +125,13 @@ public class Runner {
                             if (function != null) {
                                 return Scope.run(function, this);
                             }
-                            return null;
+                        }
+                        case "#" -> {
+                            try {
+                                return cascadeInclude(expression);
+                            } catch (IOException | IllegalSyntaxException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
@@ -138,26 +148,6 @@ public class Runner {
             }
 
             return null;
-        }
-
-        private static double num(Object value) {
-            return switch (value) {
-                case Double f -> f;
-                case String str -> Double.parseDouble(str);
-                default -> 0;
-            };
-        }
-
-        private static boolean bool(Object value) {
-            if (value == null)
-                return false;
-
-            return switch (value) {
-                case Double f -> f != 0;
-                case String str -> str.length() != 0;
-                case Boolean b -> b;
-                default -> true;
-            };
         }
 
         private Object evalArg(Tree.Node<Token> expression, int index) {
@@ -193,11 +183,58 @@ public class Runner {
             return result;
         }
 
+        private Object cascadeInclude(Tree.Node<Token> expression) throws IOException, IllegalSyntaxException {
+            Object lastValidValue = null;
+
+            for (int i = 0; i < expression.branches().size(); i++) {
+                String param = str(evalArg(expression, i));
+
+                Object tmp;
+                if (param.contains("\n")) { // Decide whether it should include a file or execute the param directly
+                    tmp = Interpreter.runCode(param, this);
+                }
+                else {
+                    tmp = Interpreter.runScript(Path.of(param), this);
+                }
+                lastValidValue = tmp == null ? lastValidValue : tmp;
+            }
+
+            return lastValidValue;
+        }
+
         private record Tuple<T, U>(T a, U b) {}
 
-        public static Object run(Tree.Node<Token> statements, Scope base) {
-            Scope scope = new Scope(base);
+        private static double num(Object value) {
+            return switch (value) {
+                case Double f -> f;
+                case String str -> Double.parseDouble(str);
+                case Boolean b -> b ? 1 : 0;
+                default -> 0;
+            };
+        }
 
+        private static String str(Object value) {
+            return switch (value) {
+                case Double f -> f.toString();
+                case String str -> str.replaceAll("(?<!\\\\)\\\\", ""); // Remove all escape sequences
+                case Boolean b -> b ? "true" : "false";
+                default -> "";
+            };
+        }
+
+        private static boolean bool(Object value) {
+            if (value == null)
+                return false;
+
+            return switch (value) {
+                case Double f -> f != 0;
+                case String str -> str.length() != 0;
+                case Boolean b -> b;
+                default -> true;
+            };
+        }
+
+        public static Object run(Tree.Node<Token> statements, Scope scope) {
             if (statements.value() == null) {
                 Object lastValidValue = null;
 

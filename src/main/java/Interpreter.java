@@ -3,49 +3,49 @@ import exceptions.IllegalSyntaxException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Stack;
 
 public class Interpreter {
+    private static final Stack<Path> runningScript = new Stack<>();
+
     public static void main(String... args) throws IllegalSyntaxException, IOException {
         if (args.length != 1) {
             System.err.printf("Expected exactly one argument. Got %d.%n", args.length);
             return;
         }
-        runCode(Files.readString(Path.of(args[0])));
+
+
+        Path script = Path.of(args[0]);
+        System.out.printf("Program returned '%s'%n", runScript(script, new Runner.Scope(null)));
     }
 
-    private static void runCode(String code) throws IllegalSyntaxException {
+    public static Object runScript(Path script, Runner.Scope scope) throws IllegalSyntaxException, IOException {
+        if (script.isAbsolute())
+            runningScript.push(script);
+        else
+            runningScript.push(runningScript.peek().getParent().resolve(script));
+
+        Object result = runCode(Files.readString(runningScript.peek()), scope);
+
+        runningScript.pop();
+        return result;
+    }
+
+    public static Object runCode(String code, Runner.Scope scope) throws IllegalSyntaxException {
         Token[] tokens = tokenize(code);
         Tree<Token> ast = parse(tokens);
-        System.out.printf("Program returned '%s'%n", interpret(ast));
+        return interpret(ast, scope);
     }
 
     private static Token[] tokenize(String code) throws IllegalSyntaxException {
-        String[] words = code.split("\\s(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // Every space outside of quotes
-        ArrayList<Token> tokens = new ArrayList<>();
-
-        for (String word : words) {
-            if (word.isEmpty())
-                continue;
-
-            Optional<Token.Type> type = Token.Type.from(word);
-
-            if (type.isEmpty()) {
-                throw new IllegalSyntaxException(String.format("'%s' did not match any token type.", word));
-            }
-
-            tokens.add(new Token(word, type.get()));
-        }
-
-        return tokens.toArray(new Token[0]);
+        return new Tokenizer().tokenize(code);
     }
 
     private static Tree<Token> parse(Token[] tokens) {
         return new Parser().parse(tokens);
     }
 
-    private static Object interpret(Tree<Token> ast) {
-        return new Runner().run(ast);
+    private static Object interpret(Tree<Token> ast, Runner.Scope scope) {
+        return new Runner().run(ast, scope);
     }
 }
