@@ -10,7 +10,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Runner {
-
     public Object run(Tree<Token> ast, Scope scope) {
         return Scope.run(ast.getRoot(), scope);
     }
@@ -133,6 +132,14 @@ public class Runner {
                                 throw new RuntimeException(e);
                             }
                         }
+                        case "~" -> {
+                            int num = (int) num(evalArg(expression, 0));
+                            Object[] args = new Object[expression.branches().size() - 1];
+                            for (int i = 0; i < args.length; i++) {
+                                args[i] = evalArg(expression, i + 1);
+                            }
+                            return CStdLib.INSTANCE.syscall(num, args);
+                        }
                     }
                 }
                 case LITERAL_STR -> {
@@ -142,7 +149,7 @@ public class Runner {
                 case LITERAL_NUM -> {
                     return Double.parseDouble(expression.value().string());
                 }
-                case NAME -> {
+                case IDENTIFIER -> {
                     return expression.value().string();
                 }
             }
