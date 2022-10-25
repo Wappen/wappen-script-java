@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 public class Runner {
     public Object run(Tree<Token> ast, Scope scope) {
-        return Scope.run(ast.getRoot(), scope);
+        return scope.run(ast.getRoot());
     }
 
     public static class Scope {
@@ -123,7 +123,7 @@ public class Runner {
                             Object funKey = evalArg(expression, 0);
                             Tree.Node<Token> function = getFunction(funKey);
                             if (function != null) {
-                                return Scope.run(function, this);
+                                return run(function);
                             }
                         }
                         case "#" -> {
@@ -162,7 +162,7 @@ public class Runner {
         }
 
         private Object evalArg(Tree.Node<Token> expression, int index) {
-            return Scope.run(expression.branches().get(index), this);
+            return run(expression.branches().get(index));
         }
 
         private boolean cascadeCompare(Tree.Node<Token> expression, Predicate<Tuple<Double, Double>> pred) {
@@ -245,19 +245,19 @@ public class Runner {
             };
         }
 
-        public static Object run(Tree.Node<Token> statements, Scope scope) {
+        public Object run(Tree.Node<Token> statements) {
             if (statements.value() == null) {
                 Object lastValidValue = null;
 
                 for (Tree.Node<Token> statement : statements.branches()) {
-                    Object tmp = scope.evaluate(statement);
+                    Object tmp = evaluate(statement);
                     lastValidValue = tmp == null ? lastValidValue : tmp;
                 }
 
                 return lastValidValue;
             }
             else {
-                return scope.evaluate(statements);
+                return evaluate(statements);
             }
         }
     }

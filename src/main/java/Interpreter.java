@@ -14,7 +14,6 @@ public class Interpreter {
             return;
         }
 
-
         Path script = Path.of(args[0]);
         System.out.printf("Program returned '%s'%n", runScript(script, new Runner.Scope(null)));
     }

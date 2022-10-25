@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9189289-d2f8-4a84-a6a9-5ea0b56aad2d" name="Changes" comment="add syscalls">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Struct.java" afterDir="false" />
+    <list default="true" id="b9189289-d2f8-4a84-a6a9-5ea0b56aad2d" name="Changes" comment="add struct expressions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interpreter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Struct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Struct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/for.ws" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/loop.ws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/script.ws" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/script.ws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666626770532</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="add struct expressions">
+      <created>1666712360063</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1666712360063</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,7 +225,8 @@
     <MESSAGE value="add comparison script" />
     <MESSAGE value="add include operator" />
     <MESSAGE value="add syscalls" />
-    <option name="LAST_COMMIT_MESSAGE" value="add syscalls" />
+    <MESSAGE value="add struct expressions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add struct expressions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

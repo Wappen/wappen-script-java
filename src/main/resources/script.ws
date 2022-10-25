@@ -1,10 +1,23 @@
-( # for.ws )
+( # loop.ws )
 
-( o = 0 )
-( @i = 10 )
+
+( n = 0 )
+
+
+( @condition = "
+    ( ( ! n ) < 40 )
+" )
 ( @body = "
-    ( o = ( ( ! o ) + 1 ) )
+    ( n = ( ( ! n ) + 1 ) )
+" )
+( @ while )
+
+
+( @n = 10 )
+( @body = "
+    ( n = ( ( ! n ) + 1 ) )
 " )
 ( @ for )
 
-{ "We executed a for-loop" ( ! o ) "times" }
+
+{ "We executed a few loops a total of" ( ! n ) "times" }
