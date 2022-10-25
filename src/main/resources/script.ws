@@ -6,3 +6,5 @@
     ( o = ( ( ! o ) + 1 ) )
 " )
 ( @ for )
+
+{ "We executed a for-loop" ( ! o ) "times" }

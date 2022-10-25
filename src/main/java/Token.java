@@ -11,6 +11,8 @@ public record Token(String string, Type type) {
         LITERAL_NUM("\\d+"),
         SCOPE_IN("\\("),
         SCOPE_OUT("\\)"),
+        STRUCT_START("\\{"),
+        STRUCT_END("\\}"),
         IDENTIFIER(".+");
 
         private final Pattern pattern;

@@ -1,6 +1,7 @@
 import exceptions.IllegalSyntaxException;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -144,13 +145,16 @@ public class Runner {
                 }
                 case LITERAL_STR -> {
                     String str = expression.value().string();
-                    return str.substring(1, str.length() - 1); // Without ""
+                    return str.substring(1, str.length() - 1); // Exclude ""
                 }
                 case LITERAL_NUM -> {
                     return Double.parseDouble(expression.value().string());
                 }
                 case IDENTIFIER -> {
                     return expression.value().string();
+                }
+                case STRUCT_START -> {
+                    return Struct.fromExpression(expression, this);
                 }
             }
 

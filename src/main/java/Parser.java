@@ -21,8 +21,13 @@ public class Parser {
                     workingStack.peek().addBranch(node);
                     workingStack.push(node);
                 }
-                case SCOPE_OUT -> {
+                case SCOPE_OUT, STRUCT_END -> {
                     workingStack.pop();
+                }
+                case STRUCT_START -> {
+                    Tree.Node<Token> node = new Tree.Node<>(currentToken);
+                    workingStack.peek().addBranch(node);
+                    workingStack.push(node);
                 }
             }
         }

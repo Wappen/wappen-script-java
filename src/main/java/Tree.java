@@ -54,9 +54,15 @@ public class Tree<T> {
 
         @Override
         public String toString() {
-            return "Node[" +
-                    "branches=" + branches + ", " +
-                    "value=" + value + ']';
+            StringBuilder sb = new StringBuilder();
+
+            if (value != null)
+                sb.append(value);
+
+            if (!branches.isEmpty())
+                sb.append(branches);
+
+            return sb.toString();
         }
     }
 }
